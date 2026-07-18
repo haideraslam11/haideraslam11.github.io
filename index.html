@@ -1,84 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haider Aslam | Civil Engineer & Graphic Designer</title>
-    <!-- Load Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haider Aslam | Portfolio</title>
+<meta name="description" content="Portfolio of Haider Aslam, Civil Engineer and Graphic Designer.">
+
+<!-- Modern Fonts: Plus Jakarta Sans for a clean, geometric, tech-forward look -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ====== CSS RESET & VARIABLES ====== */
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-card: #141414;
+    --text-main: #f5f5f5;
+    --text-muted: #a3a3a3;
+    --accent-primary: #3b82f6; /* Electric Blue */
+    --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    --border-color: #262626;
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  /* ====== TYPOGRAPHY ====== */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .gradient-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .section-tag {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ====== LAYOUT ====== */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  section {
+    padding: 100px 0;
+  }
+
+  /* ====== NAVIGATION ====== */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    padding: 1.5rem 0;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .nav-links a:hover {
+    color: var(--text-main);
+  }
+
+  /* Mobile menu button (hidden on desktop) */
+  .menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ====== HERO SECTION ====== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero p {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--text-main);
+    color: var(--bg-dark);
+    margin-right: 1rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--text-muted);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-main);
+  }
+
+  /* ====== GRID CARDS ====== */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: var(--transition);
+  }
+
+  .card:hover {
+    border-color: #404040;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .card-meta {
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: 600;
+  }
+
+  /* ====== ABOUT SECTION ====== */
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .stat-box {
+    padding: 2rem;
+    border-left: 2px solid var(--border-color);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ====== CONTACT SECTION ====== */
+  .contact-section {
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .contact-email {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--text-main);
+    display: inline-block;
+    margin: 2rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .contact-email:hover {
+    border-bottom-color: var(--accent-primary);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .social-links a {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .social-links a:hover {
+    color: var(--accent-primary);
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; /* In a real project, add JS to toggle this */
+    }
+    .menu-btn {
+      display: block;
+    }
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero-content {
+      margin: 0 auto;
+    }
+    .btn {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Reveal Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
-<body class="bg-light">
+<body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Haider Aslam</a>
-        </div>
-    </nav>
-
-    <!-- Header Section -->
-    <header class="text-center py-5 bg-white shadow-sm mb-4">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Haider Aslam</h1>
-            <p class="lead text-muted">Civil Engineering Student & Graphic Designer | Media Head</p>
-            <p>NFC Institute of Engineering and Technology, Multan</p>
-        </div>
-    </header>
-
-    <!-- Portfolio Content -->
-    <div class="container">
-        <div class="row">
-            
-            <!-- Engineering Column -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h2 class="card-title h4 border-bottom pb-2">Civil Engineering</h2>
-                        <ul class="list-unstyled mt-3">
-                            <li class="mb-3">
-                                <strong>Site Engineer Internship</strong><br>
-                                Wajid Construction (Iqbal Gate DHA, Multan)<br>
-                                <span class="text-muted small">Earth filling, soil compaction, transportation, and hydraulics.</span>
-                            </li>
-                            <li class="mb-3">
-                                <strong>Technical Workflows</strong><br>
-                                <span class="text-muted small">AutoCAD, SketchUp, ETABS, and EPANET.</span>
-                            </li>
-                            <li class="mb-3">
-                                <strong>Final Year Thesis</strong><br>
-                                <span class="text-muted small">Mechanical performance and crack-bridging synergy of sustainable green mortar composites.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Design Column -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h2 class="card-title h4 border-bottom pb-2">Graphic Design</h2>
-                        <ul class="list-unstyled mt-3">
-                            <li class="mb-3">
-                                <strong>4 Years Professional Experience</strong><br>
-                                <span class="text-muted small">Social Media Design, Branding & Ad Creatives using Canva, Adobe Photoshop, and Illustrator.</span>
-                            </li>
-                            <li class="mb-3">
-                                <strong>Civil Nexus Society</strong><br>
-                                Media Head<br>
-                                <span class="text-muted small">Directed visual branding campaigns and event poster design.</span>
-                            </li>
-                            <li class="mb-3">
-                                <strong>Automotive & Concept Art</strong><br>
-                                <span class="text-muted small">High-performance vehicles and luxury automotive edits.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">HAIDER.</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#design">Design</a>
+        <a href="#future">Future</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="menu-btn">☰</button>
     </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content reveal">
+        <span class="section-tag">Multan, Pakistan</span>
+        <h1>I build systems & <br><span class="gradient-text">design experiences.</span></h1>
+        <p>Final-year Civil Engineering student at NFC IET by day, and a freelance Graphic Designer by night. Bridging the gap between structural integrity and visual communication.<span style="display:none;">[cite: 2]</span></p>
+        <div class="hero-btns">
+          <a href="#engineering" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container reveal">
+      <span class="section-tag">About Me</span>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 2rem; max-width: 800px;">
+        Engineering structures for the physical world, creating visuals for the digital one.
+      </h2>
+      <div class="grid-2">
+        <div>
+          <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">
+            I am currently completing my B.Sc. in Civil Engineering at the NFC Institute of Engineering & Technology.<span style="display:none;">[cite: 2]</span> With over four years of freelance design experience, I thrive at the intersection of technical analysis and creative storytelling.
+          </p>
+        </div>
+        <div>
+          <p style="color: var(--text-muted); font-size: 1.1rem;">
+            Whether I'm running soil compaction tests on a massive construction site or laying out a brand identity for a corporate client, my goal is always the same: solving complex problems with elegance and precision.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-number">3.27</div>
+          <div class="stat-label">CGPA / 4.00<span style="display:none;">[cite: 2]</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Years Design Exp.<span style="display:none;">[cite: 2]</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Pro Memberships (ASCE, ACI, ASTM)<span style="display:none;">[cite: 2]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING EXPERIENCE -->
+  <section id="engineering" style="background: #0d0d0d;">
+    <div class="container reveal">
+      <span class="section-tag">Engineering</span>
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Technical Projects & Experience</h2>
+      
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-meta">Internship • DHA Multan</span>
+          <h3>Site Engineer</h3>
+          <p>Supervised earthwork operations, drainage engineering, and ground compaction for major road projects at Iqbal Gate, Defence Housing Authority (Wajid Construction).<span style="display:none;">[cite: 2]</span></p>
+        </div>
+
+        <div class="card">
+          <span class="card-meta">Academic Project</span>
+          <h3>3D Modeling & Drafting</h3>
+          <p>Drafted scaled 2D floor plans and developed a complete 3D conceptual model of the Civil Engineering department building using AutoCAD and SketchUp.<span style="display:none;">[cite: 2]</span></p>
+        </div>
+
+        <div class="card">
+          <span class="card-meta">Case Study</span>
+          <h3>Transportation Planning</h3>
+          <p>Conducted a comprehensive case study of Syedan Wala Bypass, Multan, focusing on traffic flow analysis and BRT system alignment planning.<span style="display:none;">[cite: 2]</span></p>
+        </div>
+
+        <div class="card">
+          <span class="card-meta">Academic Project</span>
+          <h3>Hydraulic Analysis</h3>
+          <p>Modelled and analysed a multi-node water distribution network utilizing EPANET and the iterative Hardy-Cross method for pressure performance.<span style="display:none;">[cite: 2]</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPHIC DESIGN & MEDIA -->
+  <section id="design">
+    <div class="container reveal">
+      <span class="section-tag">Design & Media</span>
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Creative & Digital Work</h2>
+      
+      <div class="grid-2">
+        <div class="card" style="background: transparent; border: none; padding: 0;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">Visual Communication Strategies</h3>
+          <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">
+            As the Media Head for the Civil Nexus Society, I led the digital branding and managed platforms for major university events.<span style="display:none;">[cite: 2]</span> In the freelance space, I deliver high-impact visual marketing for clients globally.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="card" style="padding: 2rem;">
+            <span class="card-meta">Freelance • Fiverr & Upwork</span>
+            <h3 style="font-size: 1.25rem;">Brand Identity & Corporate Design</h3>
+            <p>Mastered visual storytelling using Adobe Photoshop, Illustrator, and Canva to produce marketing layouts for a local aviation company and international clients.<span style="display:none;">[cite: 2]</span></p>
+          </div>
+          <div class="card" style="padding: 2rem;">
+            <span class="card-meta">Remote • 2018-2022</span>
+            <h3 style="font-size: 1.25rem;">Microsoft Specialist</h3>
+            <p>Provided expert technical support and software optimization remotely, troubleshooting complex issues for end-users and organizations.<span style="display:none;">[cite: 2]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE / IDEAS -->
+  <section id="future" style="background: #0d0d0d;">
+    <div class="container reveal">
+      <div class="grid-2" style="align-items: center;">
+        <div>
+          <span class="section-tag">What's Next</span>
+          <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">The Future Roadmap</h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">
+            I am currently preparing applications for fully funded international Master's scholarships in Civil Engineering, specializing in <strong>Project Management</strong>.<span style="display:none;">[cite: 2]</span> 
+          </p>
+          <p style="color: var(--text-muted); font-size: 1.1rem;">
+            Simultaneously, I am building <strong>Unlimited Thoughts</strong>, a digital platform and YouTube channel centered around motivation, psychology, and productivity—turning my late-night concepts into valuable content.
+          </p>
+        </div>
+        <div style="background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-color);">
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem;">
+            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+              <span style="color: var(--text-muted);">Primary Goal</span>
+              <span style="font-weight: 600;">MSc Project Management</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+              <span style="color: var(--text-muted);">Content Creation</span>
+              <span style="font-weight: 600;">Unlimited Thoughts</span>
+            </li>
+            <li style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">Current Status</span>
+              <span style="font-weight: 600; color: var(--accent-primary);">Building & Applying</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section reveal">
+    <div class="container">
+      <span class="section-tag">Let's Connect</span>
+      <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+        Open to engineering opportunities, design projects, or just a great conversation. Say hello.
+      </p>
+      
+      <a href="mailto:haideraslam1212@gmail.com" class="contact-email">haideraslam1212@gmail.com</a><span style="display:none;">[cite: 2]</span>
+      
+      <div class="social-links">
+        <a href="tel:+923166258860">Phone: 0316-6258860</a><span style="display:none;">[cite: 2]</span>
+        <a href="https://www.linkedin.com/in/haider-aslam" target="_blank">LinkedIn</a><span style="display:none;">[cite: 2]</span>
+        <a href="https://www.linktr.ee/haiderofficial11" target="_blank">Linktree</a><span style="display:none;">[cite: 2]</span>
+        <a href="https://www.fiverr.com/" target="_blank">Fiverr</a>
+        <a href="https://www.upwork.com/" target="_blank">Upwork</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Haider Aslam. Multan, Pakistan. Built with vision.</p>
+    </div>
+  </footer>
+
+  <!-- ANIMATION SCRIPT -->
+  <script>
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Trigger on load
+  </script>
 
 </body>
 </html>
